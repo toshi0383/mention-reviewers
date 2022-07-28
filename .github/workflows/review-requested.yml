@@ -14,9 +14,9 @@ jobs:
       uses: ./ # Uses an action in the root directory
       id: mention-reviews
     # Use the output from the `mention-reviews` step
-    - name: Mention reviewers
-      uses: actions/github@v1.0.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: thollander/actions-comment-pull-request@v1
       with:
-        args: comment "${{ env.mentioned_names_string }} your review has been requested ⏳"
+        message: |
+          ${{ env.mentioned_names_string }}
+          レビューお願いします ! :wave:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
